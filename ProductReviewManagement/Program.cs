@@ -38,7 +38,8 @@ namespace ProductReviewManagement
             bool check = true;
             Operations operations = new Operations();
             Console.WriteLine("1. Display Product Review\n2. Get top 3 Records\n3. Get Records By ProductId & Rating\n4. Count by ProductId\n" +
-                "5. Get All Records By ProductId\n6. Skip Top Five Records\n7. Create DataTable");
+                "5. Get All Records By ProductId\n6. Skip Top Five Records\n7. Create DataTable\n8. Create Table form List" +
+                "\n9. Retrieve Data where IsLike is True");
             while (check)
             {
                 Console.Write("Select Option to Execute : ");
@@ -65,6 +66,12 @@ namespace ProductReviewManagement
                         break;
                     case 7:
                         operations.CreateDataTable();
+                        break;
+                    case 8:
+                        operations.CreateTableData(reviewList);
+                        break;
+                    case 9:
+                        operations.RetriveRecordsByIsTrue(reviewList);
                         break;
                     default:
                         Console.WriteLine("Program Ends.");

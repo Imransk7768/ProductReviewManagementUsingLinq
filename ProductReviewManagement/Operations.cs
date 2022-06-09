@@ -9,6 +9,8 @@ namespace ProductReviewManagement
 {
     public class Operations
     {
+        public DataTable table = new DataTable();
+
         public void GetTopThreeRecords(List<ProductReview> list)
         {
             var result = list.OrderByDescending(x => x.Rating).Take(3).ToList();
@@ -87,6 +89,36 @@ namespace ProductReviewManagement
             foreach (DataRow dr in dt.Rows)
             {
                 Console.WriteLine($"\n{dr["ProductId"]}\t{dr["UserId"]}\t{dr["Review"]}\t{dr["Rating"]}\t{dr["Islike"]}");
+            }
+        }
+        public void CreateTableData(List<ProductReview> list)
+        {
+            table.Columns.Add("ProductId", typeof(int));
+            table.Columns.Add("UserId", typeof(int));
+            table.Columns.Add("Rating", typeof(double));
+            table.Columns.Add("Review", typeof(string));
+            table.Columns.Add("IsLike", typeof(bool));
+
+            foreach (var data in list)
+            {
+                table.Rows.Add(data.ProductId, data.UserId, data.Rating, data.Review, data.IsLike);
+            }
+            Console.WriteLine("Successfully Added Data");
+            foreach (DataRow dr in table.Rows)
+            {
+                Console.WriteLine("PRODUCTID : " + dr[0] + ", USERID : " + dr[1] + ", RATING : " + dr[2] +
+                     ", REVIEW : " + dr[3] + ", STATUS : " + dr[4]);
+            }
+        }
+        public void RetriveRecordsByIsTrue(List<ProductReview> list)
+        {
+            CreateTableData(list);
+            var result = from table in table.AsEnumerable() where table.Field<bool>("IsLike") == true select table;
+            Console.WriteLine($"ProductId, UserId, Rating, Review, IsLike");
+            foreach (var dr in result)
+            {
+                Console.WriteLine("PRODUCTID : " + dr[0] + ", USERID : " + dr[1] + ", RATING : " + dr[2] +
+                    ", REVIEW : " + dr[3] + ", STATUS : " + dr[4]);
             }
         }
     }
