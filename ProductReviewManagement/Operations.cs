@@ -28,13 +28,20 @@ namespace ProductReviewManagement
         }
         public void GetRecordsCountByProductId(List<ProductReview> list)
         {
-            var result = list.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Count = x.Count()});
+            var result = list.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Count = x.Count() });
             foreach (var product in result)
             {
                 Console.WriteLine("PRODUCTID : " + product.ProductId + ", Count " + product.Count);
             }
             Console.WriteLine("Count : " + list.Count);
         }
-
+        public void GetAllRecordsProductId(List<ProductReview> list)
+        {
+            var result = list.OrderBy(x => x.ProductId).Select(x => new { productId = x.ProductId, Review = x.Review });
+            foreach (var product in result)
+            {
+                Console.WriteLine("PRODUCTID : " + product.productId + ", REVIEW : " + product.Review);
+            }
+        }
     }
 }
