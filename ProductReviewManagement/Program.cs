@@ -37,7 +37,7 @@ namespace ProductReviewManagement
 
             bool check = true;
             Operations operations = new Operations();
-            Console.WriteLine("1. Display Product Review\n2. Get top 3 Records");
+            Console.WriteLine("1. Display Product Review\n2. Get top 3 Records\n3. Get Records By ProductId & Rating");
             while (check)
             {
                 Console.Write("Select Option to Execute : ");
@@ -49,6 +49,9 @@ namespace ProductReviewManagement
                         break;
                     case 2:
                         operations.GetTopThreeRecords(reviewList);
+                        break;
+                    case 3:
+                        operations.GetTopRecordsByProductIdRating(reviewList);
                         break;
                     default:
                         Console.WriteLine("Program Ends.");
