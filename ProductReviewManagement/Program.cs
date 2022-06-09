@@ -35,11 +35,25 @@ namespace ProductReviewManagement
             reviewList.Add(new ProductReview() { ProductId = 24, UserId = 7, Rating = 4, Review = "Good", IsLike = true });
             reviewList.Add(new ProductReview() { ProductId = 25, UserId = 2, Rating = 1, Review = "Bad", IsLike = true });
 
-            foreach (var product in reviewList)
+            bool check = true;
+            Operations operations = new Operations();
+            Console.WriteLine("1. Display Product Review\n2. Get top 3 Records");
+            while (check)
             {
-                Console.WriteLine("");
-                Console.WriteLine("PRODUCTID : "+ product.ProductId + ", USERID : " + product.UserId + ", RATING : " + product.Rating +
-                    ", REVIEW : " + product.Review  + ", STATUS : " + product.IsLike);
+                Console.Write("Select Option to Execute : ");
+                int choose = Convert.ToInt32(Console.ReadLine());
+                switch (choose)
+                {
+                    case 1:
+                        operations.Display(reviewList);
+                        break;
+                    case 2:
+                        operations.GetTopThreeRecords(reviewList);
+                        break;
+                    default:
+                        Console.WriteLine("Program Ends.");
+                        break;
+                }
             }
         }
     }
