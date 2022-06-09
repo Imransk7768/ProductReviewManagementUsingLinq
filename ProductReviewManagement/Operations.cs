@@ -121,5 +121,14 @@ namespace ProductReviewManagement
                     ", REVIEW : " + dr[3] + ", STATUS : " + dr[4]);
             }
         }
+        public void GetAvgRating(List<ProductReview> list)
+        {
+            var result = list.GroupBy(x => x.ProductId).Select(group => new { products = group.Key, Count = group.Average(y => y.Rating) });
+            foreach (var data in result)
+            {
+                Console.WriteLine("PRODUCTID : " + data.products + ", AVG RATING : " + data.Count);
+            }
+            Console.WriteLine("AVG RATING : " + list.Count);
+        }
     }
 }

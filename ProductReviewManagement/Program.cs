@@ -39,7 +39,7 @@ namespace ProductReviewManagement
             Operations operations = new Operations();
             Console.WriteLine("1. Display Product Review\n2. Get top 3 Records\n3. Get Records By ProductId & Rating\n4. Count by ProductId\n" +
                 "5. Get All Records By ProductId\n6. Skip Top Five Records\n7. Create DataTable\n8. Create Table form List" +
-                "\n9. Retrieve Data where IsLike is True");
+                "\n9. Retrieve Data where IsLike is True\n10. Avg Rating");
             while (check)
             {
                 Console.Write("Select Option to Execute : ");
@@ -72,6 +72,9 @@ namespace ProductReviewManagement
                         break;
                     case 9:
                         operations.RetriveRecordsByIsTrue(reviewList);
+                        break;
+                    case 10:
+                        operations.GetAvgRating(reviewList);
                         break;
                     default:
                         Console.WriteLine("Program Ends.");
